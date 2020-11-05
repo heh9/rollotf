@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to rollotf 👋</h1>
+# 🚧 (wip) rollotf
 
 > Terraform helper that allows you to apply rolling updates on resources with counts.
 
@@ -104,5 +104,4 @@ rollotf config > default.yaml
 
 ## 📝 License
 
-Copyright © 2020 [Vladimir Iacob](https://github.com/heh9).<br />
-This project is [MIT](https://github.com/heh9/rollotf/blob/master/LICENSE) licensed.
+This code is released under the MIT License. See [LICENSE](LICENSE).
