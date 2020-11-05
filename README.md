@@ -4,7 +4,7 @@
 
 ## 💡 How it works
 
-First step is to partition the instances in cycles
+The first step is to partition the instances into cycles
 
 ```python
 partition, resource = 2, [ 'node-1', 'node-2', 'node-3', 'node-4', 'node-5' ]
@@ -16,7 +16,7 @@ The update of this resource was split into 3 cycles where `len(cycle) <= partiti
 cycles = [ [ 'node-1', 'node-2' ], [ 'node-3', 'node-4' ], [ 'node-5' ] ]
 ```
 
-In each cycle a `terraform apply` or `terraform destroy+apply` is ran, targeting only the instances from that cycle
+In each cycle, a `terraform apply` or `terraform destroy+apply` is run, targeting only the instances from that cycle
 
 ```bash
 terraform apply -target resource.name['node-1'] -target resource.name['node-2']
@@ -39,7 +39,7 @@ Upgrading a Vault cluster:
 
 *Placeholder for video*
 
-Example of `config.yaml` with good meta data:
+Example of `config.yaml` with good metadata:
 
 ```yaml
 # Override default command terraform or add flags to it
@@ -50,7 +50,7 @@ name: vsphere_virtual_machine.vault_server
 partition: 1
 # Force destroy of the instance, use where providers don't detect changes properly
 recreate: yes
-# Healtcheck condition that must be satisfied in order to proceed to next cycle
+# Healtcheck condition that must be satisfied in order to proceed to the next cycle
 healthcheck:
   # Command used to check instance health, available environment variables are:
   # $INDEX $COUNT $INSTANCE_IP $INSTANCE_NAME
@@ -66,7 +66,7 @@ healthcheck:
   # Or provide a script file instead of the exec, it must be executable,
   # have a shebang and be present in the root folder
   script: health.py
-  # Intial delay after finishing an apply and before starting the checks
+  # Initial delay after finishing an apply and before starting the checks
   delay: 5m
   # How much to wait between healthchecks
   period: 15s
