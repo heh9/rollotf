@@ -7,7 +7,7 @@
 First step is to partition the instances in cycles
 
 ```python
-partiotion, resource = 2, [ 'node-1', 'node-2', 'node-3', 'node-4', 'node-5' ]
+partition, resource = 2, [ 'node-1', 'node-2', 'node-3', 'node-4', 'node-5' ]
 ```
 
 The update of this resource was split into 3 cycles where `len(cycle) <= partition`, meaning that no more than `len(cycle)` nodes can be down at any given time
