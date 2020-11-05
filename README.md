@@ -4,14 +4,19 @@
 
 ## 💡 How it works
 
-First step is to partition the instances in `cycles`
+First step is to partition the instances in cycles
 
 ```python
 partiotion, resource = 2, [ 'node-1', 'node-2', 'node-3', 'node-4', 'node-5' ]
+```
+
+The update of this resource was split into 3 cycles where `len(cycle) <= partition`, meaning that no more than `len(cycle)` nodes can be down at any given time
+
+```python
 cycles = [ [ 'node-1', 'node-2' ], [ 'node-3', 'node-4' ], [ 'node-5' ] ]
 ```
 
-In each `cycle` a `terraform apply` or `terraform destroy+apply` is ran, targeting only the instances from that cycle
+In each cycle a `terraform apply` or `terraform destroy+apply` is ran, targeting only the instances from that cycle
 
 ```bash
 terraform apply -target resource.name['node-1'] -target resource.name['node-2']
@@ -26,7 +31,7 @@ EOF
 continue
 ```
 
-A `cycle` waits for each instance to pass its health checks before proceeding
+A cycle waits for each instance to pass its health checks before proceeding
 
 ## ✨ Demo
 
@@ -37,6 +42,8 @@ Upgrading a Vault cluster:
 Example of `config.yaml` with good meta data:
 
 ```yaml
+# Override default command terraform or add flags to it
+command: terraform -lock=true -no-color
 # Name of the terraform resource to be updated
 name: vsphere_virtual_machine.vault_server
 # Maximum no. of instances to be updated in one cycle
